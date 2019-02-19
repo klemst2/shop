@@ -16,5 +16,5 @@ public class RegisterController {
 		return "views/registerForm";
 		
 	}
-
+//lol
 }
