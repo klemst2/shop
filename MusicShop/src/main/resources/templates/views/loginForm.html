@@ -23,10 +23,9 @@
 				<li class="nav-item"><a class="nav-link" href="/">Home <span
 						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" href="#">Sign
-						in</a></li>
-				<li class="nav-item"><a class="nav-link" href="/login">Log
-						in</a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Sign in</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -42,16 +41,16 @@
 			<tr>
 				<td>Email:</td>
 				<td><input type="text" th:field="*{email}"></td>
-				<td th:if="${#fields.hasErrors('*{email}')}" th:errors="*{email}">Email
+				<td th:if="${#fields.hasErrors('*{email}')}" th:errors="*{*{email}}">Email
 					Error</td>
-				<td th:if="${isEmailExist} == true">The email already exists</td>
+				<td th:if="${isExist} == true"
+					th:texh="This email has already exists"></td>
 			</tr>
 			<tr>
 				<td>Name:</td>
 				<td><input type="text" th:field="*{name}"></td>
 				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
 					Error</td>
-				<td th:if="${isNameExist} == true">The name already exists</td>
 			</tr>
 			<tr>
 				<td>Password:</td>

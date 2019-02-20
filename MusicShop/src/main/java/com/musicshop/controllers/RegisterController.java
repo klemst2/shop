@@ -28,19 +28,23 @@ public class RegisterController {
 	@PostMapping("/register")
 	public String registerUser(@Valid User user, BindingResult bindingResult, Model model) {
 
+		if (userService.userEmailExist(user.getEmail())) {
+			model.addAttribute("isEmailExist", true);
+			return "views/registerForm";
+		}
+
+		if (userService.userNameExist(user.getName())) {
+			model.addAttribute("isNameExist", true);
+			return "views/registerForm";
+		}
+
 		if (bindingResult.hasErrors()) {
 			return "views/registerForm";
 		}
-		
-		if(userService.userExist(user.getEmail())) {
-			model.addAttribute("exist", true);
-			return "views/registerForm";
-		}
-		
-		userService.createUser(user);
-		
-		return "views/sucess";
 
+		userService.createUser(user);
+
+		return "views/registerSuccess";
 	}
 
 }
