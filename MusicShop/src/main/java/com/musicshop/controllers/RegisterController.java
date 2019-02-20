@@ -12,9 +12,9 @@ public class RegisterController {
 	@GetMapping("/register")
 	public String registerForm(Model model) {
 		
-		model.addAttribute("uerr", new User());
+		model.addAttribute("user", new User());
 		return "views/registerForm";
 		
 	}
-//lol
+
 }
