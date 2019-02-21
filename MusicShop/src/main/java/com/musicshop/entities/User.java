@@ -14,8 +14,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
 public class User {
 
@@ -24,17 +22,26 @@ public class User {
 	@NotEmpty
 	@Column(unique = true)
 	private String email;
-	@NotEmpty
+	@Size(min = 4, max = 16)
 	private String name;
 	@Size(min = 4)
 	private String password;
-	
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_ROLES", joinColumns={
+	@JoinTable(name = "USER_ROLES", joinColumns = {
 			@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") }, inverseJoinColumns = {
 					@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name") })
 	private List<Role> roles;
+
+	public User(String email, String name, String password) {
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+
+	public User() {
+
+	}
 
 	public String getEmail() {
 		return email;
@@ -60,24 +67,12 @@ public class User {
 		this.password = password;
 	}
 
-
-
 	public List<Role> getRoles() {
 		return roles;
 	}
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-
-	public User(String email, String name, String password) {
-		this.email = email;
-		this.name = name;
-		this.password = password;
-	}
-
-	public User() {
-
 	}
 
 }
