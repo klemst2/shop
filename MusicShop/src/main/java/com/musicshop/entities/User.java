@@ -5,7 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,8 +19,9 @@ import javax.validation.constraints.Size;
 public class User {
 
 	@Id
+	@GeneratedValue
+	private Long id;
 	@Email
-	@NotEmpty
 	@Column(unique = true)
 	private String email;
 	@Size(min = 4, max = 16)
@@ -29,7 +31,7 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_ROLES", joinColumns = {
-			@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") }, inverseJoinColumns = {
+			@JoinColumn(name = "USER_ID", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name") })
 	private List<Role> roles;
 
@@ -41,6 +43,14 @@ public class User {
 
 	public User() {
 
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {

@@ -3,7 +3,6 @@ package com.musicshop;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -41,9 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/", "/register", "/login").permitAll().antMatchers("/profile")
-				.hasAnyRole("USER,ADMIN").antMatchers("/users").hasRole("ADMIN").and().formLogin()
-				.loginPage("/login").permitAll().defaultSuccessUrl("/profile").and().logout()
-				.logoutSuccessUrl("/login");
+				.hasAnyRole("USER,ADMIN").antMatchers("/users").hasRole("ADMIN").and().formLogin().loginPage("/login")
+				.permitAll().defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
 
 		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/h2_console/**").permitAll();
 		http.csrf().disable();

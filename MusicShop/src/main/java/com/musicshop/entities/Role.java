@@ -15,6 +15,14 @@ public class Role {
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 
+	public Role(String name, List<User> users) {
+		this.name = name;
+		this.users = users;
+	}
+
+	public Role() {
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -31,17 +39,13 @@ public class Role {
 		this.users = users;
 	}
 
-	public Role(String name, List<User> users) {
-		this.name = name;
-		this.users = users;
-	}
-
-	public Role() {
-	}
-
 	public Role(String name) {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
 
 }
