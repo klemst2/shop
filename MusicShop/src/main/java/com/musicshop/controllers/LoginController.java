@@ -24,5 +24,5 @@ public class LoginController {
 	public String accessDenied() {
 		return "/views/logged";
 	}
-	///dsasdasdadadasda
+
 }

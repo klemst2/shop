@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.musicshop.entities.Role;
 import com.musicshop.entities.User;
+import com.musicshop.repositories.RoleRepository;
 import com.musicshop.repositories.UserRepository;
 
 @Service
@@ -17,6 +18,7 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
 
 	public void createUser(User user) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
