@@ -45,12 +45,9 @@ public class UserService {
 	public boolean userEmailExist(String email) {
 		return userRepository.findByEmail(email).isPresent();
 	}
-<<<<<<< HEAD
 
-=======
 
 	public boolean userNameExist(String name) {
 		return userRepository.findByName(name).isPresent();
 	}
->>>>>>> refs/remotes/origin/branch
 }
