@@ -12,22 +12,13 @@ import com.musicshop.services.UserService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminUsersController {
 
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("")
-	public String showAdminIndex() {
-		return "views/adminIndex";
-	}
-
 	@GetMapping("/users")
 	public String showAdminUsers(Model model) {
-
-//		userService.createUser(new User("testwowsy@wp.pl", "tesaaasstsddkhy", "dsfdsfsfsdfs"));
-//		userService.createUser(new User("tessswtowy@wp.pl", "teaaasstddffkhy", "dsfdsfssfsdfs"));
-//		userService.createUser(new User("testsfowy@wp.pl", "tessstssdddkhy", "dsfdssfsfsdfs"));
 
 		model.addAttribute("users", userService.findAll());
 		return "views/adminUsers";
@@ -39,8 +30,4 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 
-	@GetMapping("/products")
-	public String showAdminProducts() {
-		return "views/adminProducts";
-	}
 }

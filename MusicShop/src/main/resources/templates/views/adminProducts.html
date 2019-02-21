@@ -17,7 +17,6 @@
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="#">Home <span
@@ -35,20 +34,48 @@
 			</form>
 		</div>
 	</nav>
-
 	<div class="row" style="margin-top: 50px">
+		<div class="col-1"></div>
 		<div class="col-2">
 			<div class="nav flex-column nav-pills" id="v-pills-tab"
 				role="tablist" aria-orientation="vertical">
 				<a class="nav-link" href="/admin">Home</a> <a class="nav-link"
 					href="/admin/users">Users</a> <a class="nav-link btn-danger active"
-					href="/admin/products">Products</a>
+					href="/admin/products">Products</a> <a class="nav-link"
+					href="/admin/products">Banned</a> <a class="nav-link"
+					href="/admin/products">History</a>
 			</div>
 		</div>
-		<div class="col-10">
-			<div class="tab-content">produkty</div>
-		</div>
-	</div>
+		<div class="col-7">
+			<div class="tab-content">
 
+				<table class="table table-hover table-sm">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Name</th>
+							<th scope="col">Price</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody th:each="product : ${products}">
+						<tr>
+							<th scope="row" th:text="${product.indexOf(user)+1}+'. '"></th>
+							<td th:text="${product.getName()}"></td>
+							<td th:text="${product.getPrice()}"></td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm">Edit</button>
+								<a th:href="@{'/admin/products/' + ${product.getId()}}"><button
+										type="button" class="btn btn-danger btn-sm">Delete</button></a>
+								<button type="button" class="btn btn-warning btn-sm">Ban</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		<div class="col-1"></div>
+	</div>
 </body>
 </html>
